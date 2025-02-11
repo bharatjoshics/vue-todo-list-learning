@@ -21,10 +21,10 @@
 <script>
 //import NewTodo from './Components/NewTodo.vue';
 //import TodoItem from './Components/TodoItem.vue';
-
+import { mapState, mapActions } from 'vuex';
 export default {
   //components: { NewTodo, TodoItem },
-    data() {
+    /*data() {
         return {
             todos: [
                 { id: 1, task: "Learn Vue.js", isCompleted: false },
@@ -45,7 +45,16 @@ export default {
             };
             this.todos.push(newTodo);
         }
-    }
+    }*/
+   computed: {
+      ...mapState(['todos'])
+   },
+   methods: {
+      ...mapActions(['toggleTodo']),
+      toggleCompletionStatus(todoID){
+          this.toggleTodo(todoID);
+      }
+   }
 };
 </script>
 
