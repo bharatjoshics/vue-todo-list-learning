@@ -1,10 +1,6 @@
 <template>
     <form @submit.prevent="submitData">
         <div>
-            <label>Id</label>
-            <input type="number" v-model="addId"/>
-        </div>
-        <div>
             <label>Task</label>
             <input type="text" v-model="addTask"/>
         </div>
@@ -20,7 +16,6 @@ export default {
     //emits: ['add-todo'],
     data() {
         return {
-            addId: '',
             addTask: ''
         };
     },
@@ -34,13 +29,11 @@ export default {
    methods: {
         ...mapActions(['addTodo']),
         submitData(){
-            if(this.addId && this.addTask){
+            if(this.addTask){
                 this.addTodo({
-                    id: this.addId,
                     task: this.addTask,
                     isCompleted: false
                 });
-                this.addId = '';
                 this.addTask = '';
             }
         }
