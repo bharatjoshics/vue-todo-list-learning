@@ -22,6 +22,12 @@ export default createStore({
             if (todo) {
                 todo.isCompleted = !todo.isCompleted;
             }
+        },
+        EDIT_TODO(state, {id, newTask}){
+            const todo = state.todos.find(todo => todo.id === id);
+            if(todo){
+                todo.task = newTask;
+            }
         }
     },
     actions: {
@@ -30,6 +36,9 @@ export default createStore({
         },
         toggleTodo({ commit }, todoID) {
             commit('TOGGLE_TODO', todoID);
+        },
+        editTodo({ commit }, task){
+            commit('EDIT_TODO', task);
         }
     },
     getters: {

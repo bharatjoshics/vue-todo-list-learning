@@ -8,7 +8,8 @@
                 :id="todo.id"
                 :task="todo.task"
                 :isCompleted="todo.isCompleted"
-                @toggle-completion="toggleCompletionStatus">
+                @toggle-completion="toggleCompletionStatus"
+                @edit-task="editTask">
             </todo-item>
             <!--<router-link to="/AddTodo">Add New</router-link>-->
         </ul>
@@ -50,10 +51,13 @@ export default {
       ...mapState(['todos'])
    },
    methods: {
-      ...mapActions(['toggleTodo']),
+      ...mapActions(['toggleTodo', 'editTodo']),
       toggleCompletionStatus(todoID){
           this.toggleTodo(todoID);
-      }
+      },
+     editTask(todoID, newTask){
+        this.editTodo({id: todoID, newTask});
+     }
    }
 };
 </script>
